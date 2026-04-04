@@ -19,7 +19,6 @@
 
 - [ ] Claude 帳號已註冊（Pro 方案以上）
 - [ ] Claude Code 桌面版已安裝
-- [ ] Git for Windows 已安裝（Windows 使用者）
 - [ ] 已看過 EP01（了解 Chat / CoWork / Code 三個分頁）
 - [ ] 已看過 EP02（了解什麼是 Skill）
 
@@ -31,6 +30,7 @@
 |------|-----------|---------|------|------|
 | 00 | [環境建置](00-環境建置.md) | EP03 | v0.2 | 安裝 Git、GitHub CLI、uv 等基礎工具 |
 | 01 | [連接 NotebookLM](01-連接-NotebookLM.md) | EP03 | v0.2 | 安裝 NotebookLM MCP + 產生簡報與圖表 |
+| 02 | [連接 GitHub](02-連接-GitHub.md) | EP04 | v0.2 | 連接 GitHub + GitHub Pages 教材上線 |
 
 > 懶人包會在不斷實作的過程中持續更新，最終成為最適合大眾使用的版本。
 
@@ -41,6 +41,8 @@
 - **Claude基本功 EP01**：一次搞懂 Claude 全生態
 - **Claude基本功 EP02**：一次搞懂 Skills
 - **Claude基本功 EP03**：懶人包先備工作 + NotebookLM 連接實作
+- **Claude基本功 EP04**：GitHub 懶人包與教學網頁上線
+- **Claude基本功 EP05**：單元教學控制台（殺手級應用）
 
 ---
 
