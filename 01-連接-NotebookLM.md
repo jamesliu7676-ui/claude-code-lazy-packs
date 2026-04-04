@@ -141,10 +141,14 @@ nlm setup list
 ```
 Documents/
   └── NotebookLM/
-      ├── slides/          ← 簡報存放處
-      ├── infographics/    ← 資訊圖表存放處
-      ├── audio/           ← 音訊概覽存放處
-      └── video/           ← 影片概覽存放處
+      ├── slides/          ← 簡報（Slide Deck，可匯出 .pptx）
+      ├── infographics/    ← 資訊圖表（多種風格可選）
+      ├── audio/           ← 音訊概覽（Audio Overview）
+      ├── video/           ← 影片概覽（Video Overview，含 Cinematic / Explainer / Brief）
+      ├── docs/            ← Google 文件匯出（Reports、Notes 等）
+      ├── sheets/          ← Google 試算表匯出（Data Tables）
+      ├── mindmaps/        ← 心智圖（Mind Map）
+      └── quizzes/         ← 測驗與閃卡（Quiz、Flashcards）
 ```
 
 建立完成後，告知使用者資料夾的完整路徑。
@@ -175,12 +179,17 @@ Documents/
 
 連接成功後，你隨時可以在 Claude Code 裡用自然語言操控 NotebookLM：
 
-| 你說的話 | NotebookLM 會做的事 |
-|----------|-------------------|
-| 「幫我用這份 PDF 建一個 notebook」 | 建立 notebook + 上傳 PDF 作為資料來源 |
-| 「幫我產生教學簡報」 | 生成 Slide Deck，下載到 NotebookLM/slides/ |
-| 「幫我做一張資訊圖表」 | 生成 Infographic，下載到 NotebookLM/infographics/ |
-| 「幫我產生音訊概覽（Podcast）」 | 生成 Audio Overview，下載到 NotebookLM/audio/ |
+| 你說的話 | NotebookLM 會做的事 | 存放位置 |
+|----------|-------------------|---------|
+| 「幫我用這份 PDF 建一個 notebook」 | 建立 notebook + 上傳 PDF 作為資料來源 | — |
+| 「幫我產生教學簡報」 | 生成 Slide Deck（可匯出 .pptx） | slides/ |
+| 「幫我做一張資訊圖表」 | 生成 Infographic（多種風格可選） | infographics/ |
+| 「幫我產生音訊概覽（Podcast）」 | 生成 Audio Overview | audio/ |
+| 「幫我產生影片概覽」 | 生成 Video Overview（Cinematic / Explainer / Brief） | video/ |
+| 「幫我產生報告並匯出成文件」 | 生成 Report，匯出為 Google Docs | docs/ |
+| 「幫我做數據表格並匯出試算表」 | 生成 Data Table，匯出為 Google Sheets | sheets/ |
+| 「幫我產生心智圖」 | 生成 Mind Map | mindmaps/ |
+| 「幫我出測驗題 / 閃卡」 | 生成 Quiz / Flashcards | quizzes/ |
 
 ---
 
