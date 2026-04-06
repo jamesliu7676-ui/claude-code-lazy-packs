@@ -2,7 +2,7 @@
 title: 'Claude Code 懶人包 #03：建立第二大腦（Obsidian）'
 date: '2026-04-04'
 type: 懶人包
-version: v0.2
+version: v0.4
 status: 初版（實作後更新）
 tags:
   - Claude-Code
@@ -14,8 +14,8 @@ video: EP06
 ---
 # Claude Code 懶人包 #03：建立第二大腦（Obsidian）
 
-> 版本：v0.2
-> 更新日期：2026-04-04
+> 版本：v0.4
+> 更新日期：2026-04-06
 > 對應影片：Claude基本功 EP06
 
 > 📌 **本懶人包可獨立執行**：會自動檢查並安裝所需工具，不需要先看過其他懶人包。你只要確認下方「先備條件」即可開始。
@@ -27,7 +27,6 @@ video: EP06
 幫你的 Claude Code 裝上「第二大腦」，完成後 Claude 可以：
 - 讀取你 Obsidian 筆記庫裡的所有筆記
 - 幫你搜尋、新增、編輯筆記
-- 知道你目前正在看哪篇筆記
 - 記住你的教學紀錄、素材、想法，變成你的專屬助理
 
 ---
@@ -96,10 +95,31 @@ video: EP06
 
 > 如果步驟零確認 Google Drive 桌面版已安裝，跳過此步驟。
 
-> 🖐️ **需要手動操作**：
-> 1. 請使用者開啟瀏覽器，到 https://www.google.com/drive/download/ 下載 Google Drive 桌面版
-> 2. 安裝並登入 Google 帳號
-> 3. 等待 Google Drive 同步完成（狀態列顯示 ✅）
+Google Drive 桌面版會在你的電腦上建立一個同步資料夾，Obsidian 的筆記存在這裡就能自動同步到雲端，換電腦也不會遺失。
+
+> 🖐️ **需要手動操作**：請依照以下步驟操作。
+>
+> **下載與安裝：**
+> 1. 開啟瀏覽器，前往 https://www.google.com/drive/download/
+> 2. 點擊「下載電腦版雲端硬碟」按鈕
+> 3. 執行下載的安裝檔（`GoogleDriveSetup.exe`）
+> 4. 安裝過程中按照指示完成（一路點「下一步」即可）
+>
+> **登入與設定：**
+> 5. 安裝完成後會自動開啟登入畫面，用你的 Google 帳號登入
+> 6. 登入後，系統匣（右下角）會出現 Google Drive 的雲朵圖示
+> 7. 點擊雲朵圖示 → 齒輪 ⚙ → 「偏好設定」
+> 8. 確認「Google 雲端硬碟」分頁中的同步方式：
+>    - 選擇「串流檔案」（預設，推薦）— 檔案存在雲端，需要時才下載
+>    - 或選擇「鏡射檔案」— 所有檔案都下載到本機（佔空間但離線也能用）
+>
+> **確認同步資料夾位置：**
+> 9. 安裝完成後，檔案總管左側會出現「Google Drive」磁碟機（通常是 `G:\`）
+>    - Windows：通常是 `G:\我的雲端硬碟\` 或 `G:\My Drive\`
+>    - macOS：通常是 `~/Library/CloudStorage/GoogleDrive-你的信箱/My Drive/`
+> 10. 等待同步完成（系統匣的雲朵圖示顯示 ✅ 打勾）
+>
+> 確認能看到 Google Drive 資料夾後，告訴 Claude「完成了」即可繼續。
 
 ---
 
@@ -160,47 +180,7 @@ claude mcp add obsidian --scope user -- npx @bitbonsai/mcpvault "/path/to/vault"
 
 ---
 
-### 步驟六：安裝 obsidian-claude-code-mcp 插件（可選但建議）
-
-這個插件讓 Claude Code 能感知你目前在 Obsidian 開啟的筆記。
-
-> 🖐️ **需要手動操作**：以下步驟需要使用者在 Obsidian 中操作。
-
-#### 6a. 下載插件檔案
-
-在 vault 的 `.obsidian/plugins/` 資料夾下建立 `obsidian-claude-code-mcp` 資料夾，並下載三個檔案：
-
-```bash
-# 建立插件資料夾
-mkdir -p "[vault路徑]/.obsidian/plugins/obsidian-claude-code-mcp"
-
-# 下載插件檔案
-cd "[vault路徑]/.obsidian/plugins/obsidian-claude-code-mcp"
-curl -sLO "https://github.com/iansinnott/obsidian-claude-code-mcp/releases/download/1.1.8/main.js"
-curl -sLO "https://github.com/iansinnott/obsidian-claude-code-mcp/releases/download/1.1.8/manifest.json"
-curl -sLO "https://github.com/iansinnott/obsidian-claude-code-mcp/releases/download/1.1.8/styles.css"
-```
-
-#### 6b. 在 Obsidian 中啟用插件
-
-> 🖐️ **需要手動操作**：
-> 1. 重新開啟 Obsidian（或按 Ctrl+R 重新載入）
-> 2. 到「設定 → 社群外掛」
-> 3. 先關閉「安全模式」（第一次使用社群外掛需要）
-> 4. 找到「Claude Code MCP」並啟用
-> 5. 確認設定頁面中顯示 `Running`，port 預設 `22360`
-
-#### 6c. 設定 Claude Code 的 MCP 連接
-
-```bash
-claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:22360/sse
-```
-
-> 注意：使用 obsidian-ide 時，Obsidian 必須先開著。
-
----
-
-### 步驟七：重啟 Claude Code 並驗證
+### 步驟六：重啟 Claude Code 並驗證
 
 > 🖐️ **需要手動操作**：請使用者完全關閉 Claude Code 桌面版，然後重新開啟。
 
@@ -216,9 +196,6 @@ claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:2236
 - 內容：「這是 Claude Code 透過 MCP 自動建立的筆記。連接成功！」
 - 含 frontmatter：title、date
 
-#### 測試 3：感知當前筆記（如果有安裝步驟六的插件）
-請使用者在 Obsidian 中打開剛才的測試筆記，然後嘗試讀取當前開啟的檔案。
-
 > 全部測試通過後，告知使用者：
 > 「✅ 全部完成！Claude Code 已成功連接你的 Obsidian 第二大腦。」
 
@@ -226,7 +203,7 @@ claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:2236
 
 ## 階段三：建立基礎知識結構
 
-### 步驟八：建立 CLAUDE.md
+### 步驟七：建立 CLAUDE.md
 
 在 vault 根目錄建立 `CLAUDE.md`，這是 Claude Code 的「班規」，每次對話都會自動讀取。
 
@@ -254,7 +231,7 @@ claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:2236
 - 搜尋筆記時優先搜尋教學素材相關內容
 ```
 
-### 步驟九：建立第一篇正式筆記
+### 步驟八：建立第一篇正式筆記
 
 幫使用者建立一篇有意義的筆記作為起點，例如：
 - 「本學期教學計畫」
@@ -272,7 +249,7 @@ claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:2236
 | 「搜尋我的筆記有沒有跟 XXX 相關的」 | 用 BM25 搜尋 vault，回傳相關筆記 |
 | 「幫我新增一篇筆記，紀錄今天的教學反思」 | 在 vault 中建立新筆記，含 frontmatter |
 | 「幫我整理這篇筆記的重點」 | 讀取筆記內容並摘要 |
-| 「我現在開著的這篇，幫我延伸出教學點子」 | 感知當前筆記，給出延伸建議 |
+| 「幫我看 XXX 這篇筆記，延伸出教學點子」 | 讀取指定筆記，給出延伸建議 |
 | 「幫我把今天的對話重點存到筆記」 | 整理對話並存入 vault |
 
 ---
@@ -285,13 +262,11 @@ claude mcp add obsidian-ide --scope user -- npx mcp-remote http://localhost:2236
 Claude 會自動：
 1. 檢查 mcpvault 是否正常運作
 2. 檢查 vault 路徑是否正確
-3. 檢查 obsidian-claude-code-mcp 插件是否啟用
-4. 找出問題並修復
+3. 找出問題並修復
 
 如果需要完全重置 MCP 連接：
 ```bash
 claude mcp remove obsidian
-claude mcp remove obsidian-ide
 ```
 然後從步驟五重新開始。
 
@@ -302,8 +277,6 @@ claude mcp remove obsidian-ide
 | 問題 | 解法 |
 |------|------|
 | mcpvault 搜尋不到筆記 | 確認 vault 路徑正確，路徑中有中文或空格需用引號包住 |
-| obsidian-ide 連不上 | 確認 Obsidian 有開啟且插件已啟用，然後重啟 Claude Code |
-| 社群插件找不到 Claude Code MCP | 這個插件需手動下載安裝（步驟六），尚未上架官方插件庫 |
 | Google Drive 同步衝突 | 避免在兩台裝置同時編輯同一篇筆記，等同步完成再操作 |
 | `npx: command not found` | 確認 Node.js 已安裝，重啟 Claude Code 桌面版 |
 | （實作後持續補充） | |
@@ -330,14 +303,15 @@ claude mcp remove obsidian-ide
 |------|------|---------|
 | 2026-04-04 | v0.1 | 初版 |
 | 2026-04-04 | v0.2 | 加入環境檢查、復原機制、跨平台支援、Google Drive 同步方案 |
+| 2026-04-06 | v0.3 | 移除 obsidian-ide（obsidian-claude-code-mcp），mcpvault 已涵蓋所需功能 |
+| 2026-04-06 | v0.4 | 補充 Google Drive 桌面版完整安裝教學、修正步驟編號 |
 
 ---
 
 ## 相關連結
 
 - [mcpvault GitHub](https://github.com/bitbonsai/mcpvault)
-- [obsidian-claude-code-mcp GitHub](https://github.com/iansinnott/obsidian-claude-code-mcp)
 - [Obsidian 官網](https://obsidian.md)
 - [[00-環境建置|懶人包 #00：環境建置]]
-- [[Claude基本功EP06 - Obsidian第二大腦懶人包]]
+- [[Claude基本功EP07 - Obsidian第二大腦懶人包]]
 - [[README|Claude Code 懶人包索引]]
