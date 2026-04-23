@@ -3,7 +3,7 @@
 ## 這個資料夾是什麼
 
 這是公開發布到 GitHub 的 Claude Code 懶人包倉庫，對應 repo：
-**mathruffian-dot/claude-code-lazy-packs**
+**jamesliu7676-ui/claude-code-lazy-packs**
 
 ## ⚠️ 雙倉同步規則（重要）
 
